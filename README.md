@@ -80,6 +80,49 @@ Proyek ini terdiri dari empat komponen pemodelan utama:
    - **Metode**: **Rule-Based System**. 
    - **File Penting**: `Fungsi Skor Kesehatan.py`.
 
+🔄 **Machine Learning Workflow (NuTrack)**
+
+**1. Data Collection:**
+
+- Dataset dikumpulkan dari berbagai sumber, termasuk database produk makanan Indonesia, dataset nutrisi Kaggle, dan data medis terkait gizi Kaggle.
+
+**2. Data Cleaning & Preprocessing:**
+
+- Menghapus data yang tidak lengkap (missing values).
+- Standarisasi unit dan format data nutrisi.
+- Normalisasi atau Scaling pada fitur-fitur numerik untuk menyamakan skala.
+- Prapemrosesan gambar untuk dataset OCR (cropping and Labelling).
+
+**3. Model Development (per Komponen):**
+
+a. **Model Klasifikasi Penyakit:**
+
+- Feature Engineering: Data asupan gizi pasien diolah menjadi matriks fitur.
+- Encoding: Fitur kategorikal diubah menjadi numerik menggunakan One-hot Encoding atau metode serupa. Target penyakit diubah menjadi format biner multilabel dengan MultiLabelBinarizer.
+
+
+b. **Model Rekomendasi Gizi & Skor Kesehatan:**
+
+- Sistem Berbasis Aturan: Mengimplementasikan logika berdasarkan standar Angka Kecukupan Gizi (AKG) untuk menghitung skor kesehatan.
+- Algoritma Optimisasi: Mengembangkan fungsi untuk mencari kombinasi produk yang optimal untuk memenuhi sisa kebutuhan gizi pengguna, bukan berdasarkan model ML yang dilatih.
+
+c. **Model OCR:**
+
+- Preprocessing: Gambar label produk diproses untuk meningkatkan kualitas teks yang dapat dideteksi.
+- Arsitektur Model: Menggunakan atau melakukan fine-tuning pada model Deep Learning yang sudah ada untuk pengenalan teks (Optical Character Recognition).
+
+**4. Training & Evaluasi:**
+
+- **Model Klasifikasi Penyakit:**
+  - Model dilatih menggunakan dataset yang telah dipreprocessing.
+  - Dievaluasi menggunakan metrik klasifikasi multilabel seperti Accuracy, Precision, Recall, dan F1-Score.
+- **Model OCR:**
+  - Model dilatih pada dataset gambar label.
+  - Dievaluasi menggunakan metrik Word Error Rate (WER).
+- **Komponen Rule-Based:**
+  - Divalidasi melalui unit testing untuk memastikan akurasi perhitungan dan logika sesuai dengan aturan yang ditetapkan (standar AKG).
+
+
 ## 💻 Envy
 
 - **Python**: Bahasa pemrograman utama.
